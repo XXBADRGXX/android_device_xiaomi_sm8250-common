@@ -84,6 +84,7 @@ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 # HWUI
 HWUI_COMPILE_FOR_PERF := true
 
+
 # Kernel
 ifeq ($(PRODUCT_VIRTUAL_AB_OTA),true)
 BOARD_BOOT_HEADER_VERSION := 3
@@ -99,9 +100,13 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+TARGET_KERNEL_NO_GCC := true
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8250
 TARGET_KERNEL_CONFIG := \
-    vendor/pipa_defconfig 
+    vendor/kona-perf_defconfig \
+    vendor/debugfs.config \
+    vendor/xiaomi/sm8250-common.config
+ 
 
 # Kernel Clang Flags
 KERNEL_CC := CC=clang
